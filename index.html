@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>匿名提問箱</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+    body {
+      background: linear-gradient(135deg, #f39c12, #e74c3c, #9b59b6);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+    h2 {
+      color: #333;
+      margin-bottom: 10px;
+      font-size: 24px;
+    }
+    p {
+      color: #666;
+      font-size: 14px;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+    textarea {
+      width: 100%;
+      height: 130px;
+      padding: 12px;
+      border: 2px solid #ddd;
+      border-radius: 12px;
+      resize: none;
+      font-size: 16px;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+    textarea:focus {
+      border-color: #e74c3c;
+    }
+    button {
+      margin-top: 15px;
+      width: 100%;
+      padding: 12px;
+      background: #e74c3c;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s, opacity 0.3s;
+    }
+    button:hover {
+      background: #c0392b;
+    }
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+    
+    /* Formspree 狀態訊息樣式 */
+    [data-fs-success] {
+      display: none;
+      background: #e8f8f5;
+      color: #27ae60;
+      padding: 15px;
+      border-radius: 12px;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+    [data-fs-error] {
+      color: #e74c3c;
+      font-size: 13px;
+      margin-top: 5px;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>🤫 匿名投稿</h2>
+    <p>有什麼想說的？在這裡留言</p>
+    
+    <!-- 成功提示區域 -->
+    <div data-fs-success>🎉 留言已順利寄出！感謝你的分享！</div>
+
+    <!-- 匿名表單 -->
+    <form id="anonymous-form">
+      <div>
+        <textarea name="message" placeholder="寫下你想說的話..." required data-fs-field></textarea>
+        <div data-fs-error="message"></div>
+      </div>
+      
+      <button type="submit" data-fs-submit-btn>送出匿名留言</button>
+      <div data-fs-error></div>
+    </form>
+  </div>
+
+  <!-- Formspree Ajax SDK -->
+  <script>
+    window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+    formspree('initForm', { formElement: '#anonymous-form', formId: 'xbgjqgvr' });
+  </script>
+  <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
+
+</body>
+</html>
+
