@@ -28,6 +28,33 @@
       padding: 20px;
       position: relative;
     }
+
+    /* 整個網頁右上角固定浮動的 IG 群組按鈕 */
+    .ig-screen-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 999; /* 確保永遠浮在最上層 */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+      color: white;
+      border-radius: 50%;
+      text-decoration: none;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .ig-screen-btn:hover {
+      transform: scale(1.12);
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.45);
+    }
+    .ig-screen-btn i {
+      font-size: 26px;
+    }
+
     .card {
       background: rgba(255, 255, 255, 0.92);
       backdrop-filter: blur(8px);
@@ -37,37 +64,10 @@
       width: 100%;
       max-width: 400px;
       text-align: center;
-      position: relative;
-    }
-
-    /* 右上角 IG 群組按鈕樣式 */
-    .ig-link-btn {
-      position: absolute;
-      top: 18px;
-      right: 18px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 42px;
-      height: 42px;
-      background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
-      color: white;
-      border-radius: 50%;
-      text-decoration: none;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    .ig-link-btn:hover {
-      transform: scale(1.12);
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
-    }
-    .ig-link-btn i {
-      font-size: 22px;
     }
 
     h2 {
       color: #2c3e50;
-      margin-top: 10px;
       margin-bottom: 10px;
       font-size: 24px;
     }
@@ -132,13 +132,13 @@
 </head>
 <body>
 
-  <div class="card">
-    <!-- 右上角 IG 群組按鈕 -->
-    <a href="https://ig.me/j/uk7x2r1jqn8SXzO1/" target="_blank" rel="noopener noreferrer" class="ig-link-btn" title="加入 IG 群組">
-      <i class="fab fa-instagram"></i>
-    </a>
+  <!-- 整個網頁右上角 IG 按鈕 -->
+  <a href="https://ig.me/j/uk7x2r1jqn8SXzO1/" target="_blank" rel="noopener noreferrer" class="ig-screen-btn" title="加入 IG 群組">
+    <i class="fab fa-instagram"></i>
+  </a>
 
-    <h2>🌍 國際真主投稿</h2>
+  <div class="card">
+    <h2>🌍 國際真主匿名</h2>
     <p>匿名投稿</p>
     
     <!-- 成功提示區域 -->
