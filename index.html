@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>國際真主交流版</title>
+  <title>國際真主版</title>
   <!-- 引入 FontAwesome 圖示庫 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
@@ -38,12 +38,11 @@
       transition: opacity 1.2s ease-in-out;
     }
 
-    /* 預設顯示第一個景點 */
     .bg-layer.active {
       opacity: 1;
     }
 
-    /* 黑色半透明遮罩，確保文字與卡片清晰 */
+    /* 黑色半透明遮罩 */
     .bg-overlay {
       position: fixed;
       top: 0;
@@ -130,9 +129,9 @@
       background: #5865F2;
     }
 
-    /* 通用卡片容器 */
+    /* 通用卡片容器 (已設定為 85% 不透明度) */
     .card {
-      background: rgba(255, 255, 255, 0.92);
+      background: rgba(255, 255, 255, 0.85); /* 85% 不透明度 */
       backdrop-filter: blur(8px);
       padding: 30px;
       border-radius: 20px;
@@ -165,6 +164,7 @@
       font-size: 16px;
       outline: none;
       transition: border-color 0.3s;
+      background: rgba(255, 255, 255, 0.9);
     }
     textarea:focus {
       border-color: #3498db;
@@ -200,9 +200,9 @@
       60% { transform: translateY(-4px); }
     }
 
-    /* 資訊卡片通用樣式 */
+    /* 資訊卡片通用樣式 (新聞與宗教區塊，已設定為 85% 不透明度) */
     .info-card {
-      background: rgba(255, 255, 255, 0.95);
+      background: rgba(255, 255, 255, 0.85); /* 85% 不透明度 */
       backdrop-filter: blur(8px);
       padding: 25px;
       border-radius: 20px;
@@ -229,7 +229,7 @@
     }
     .news-item {
       padding: 12px 0;
-      border-bottom: 1px solid #eee;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
     }
     .news-item:last-child {
       border-bottom: none;
@@ -248,7 +248,7 @@
     }
     .news-date {
       font-size: 12px;
-      color: #888;
+      color: #666;
       margin-top: 5px;
     }
 
@@ -267,7 +267,7 @@
     }
     .progress-bar-bg {
       width: 100%;
-      background-color: #e9ecef;
+      background-color: rgba(0, 0, 0, 0.08);
       height: 10px;
       border-radius: 5px;
       overflow: hidden;
@@ -279,7 +279,7 @@
     }
     .update-time {
       font-size: 11px;
-      color: #999;
+      color: #777;
       text-align: right;
       margin-top: 10px;
     }
@@ -299,9 +299,9 @@
 <body>
 
   <!-- 動態景點背景圖層 -->
-  <div class="bg-layer active" id="bg-1" style="background-image: url('https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=1600&auto=format&fit=crop');"></div> <!-- 巴黎艾菲爾鐵塔 -->
-  <div class="bg-layer" id="bg-2" style="background-image: url('https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?q=80&w=1600&auto=format&fit=crop');"></div> <!-- 日本富士山 -->
-  <div class="bg-layer" id="bg-3" style="background-image: url('https://images.unsplash.com/photo-1564507592333-c60657eea523?q=80&w=1600&auto=format&fit=crop');"></div> <!-- 印度泰姬瑪哈陵 -->
+  <div class="bg-layer active" id="bg-1" style="background-image: url('https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=1600&auto=format&fit=crop');"></div>
+  <div class="bg-layer" id="bg-2" style="background-image: url('https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?q=80&w=1600&auto=format&fit=crop');"></div>
+  <div class="bg-layer" id="bg-3" style="background-image: url('https://images.unsplash.com/photo-1564507592333-c60657eea523?q=80&w=1600&auto=format&fit=crop');"></div>
   <div class="bg-overlay"></div>
 
   <!-- 左上角懸掛告示牌 -->
@@ -319,7 +319,7 @@
     </a>
   </div>
 
-  <!-- 第一區塊：匿名留言板（對應景點 1：巴黎） -->
+  <!-- 第一區塊：匿名留言板 (85% 不透明度) -->
   <div class="card section-target" data-bg="bg-1">
     <h2>🌍 國際真主匿名</h2>
     <p>匿名投稿</p>
@@ -339,7 +339,7 @@
     <i class="fas fa-chevron-down"></i> 往下滑看國際資訊
   </div>
 
-  <!-- 第二區塊：國際即時新聞區（對應景點 2：富士山） -->
+  <!-- 第二區塊：國際即時新聞區 (85% 不透明度) -->
   <div class="info-card section-target" data-bg="bg-2">
     <h3><i class="fas fa-globe-americas" style="color: #3498db;"></i> 國際即時頭條</h3>
     <ul class="news-list" id="news-container">
@@ -347,7 +347,7 @@
     </ul>
   </div>
 
-  <!-- 第三區塊：全球前 5 大宗教信徒百分比（對應景點 3：泰姬瑪哈陵） -->
+  <!-- 第三區塊：全球前 5 大宗教信徒百分比 (85% 不透明度) -->
   <div class="info-card section-target" data-bg="bg-3">
     <h3><i class="fas fa-chart-pie" style="color: #e67e22;"></i> 全球前 5 大宗教信徒比例</h3>
     <div id="religion-container">
@@ -365,7 +365,6 @@
 
   <!-- 動態背景切換與數據 API 腳本 -->
   <script>
-    // 滾動偵測：當區塊進入畫面中央時自動切換背景
     const sections = document.querySelectorAll('.section-target');
     const bgLayers = document.querySelectorAll('.bg-layer');
 
@@ -392,7 +391,6 @@
 
     sections.forEach(section => observer.observe(section));
 
-    // 抓取新聞
     async function fetchWorldNews() {
       const container = document.getElementById('news-container');
       try {
@@ -423,7 +421,6 @@
       }
     }
 
-    // 抓取宗教數據
     async function fetchReligionData() {
       const container = document.getElementById('religion-container');
       const timeContainer = document.getElementById('religion-time');
