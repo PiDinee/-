@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>匿名投稿</title>
-  <!-- 引入 FontAwesome 圖示庫 (用於顯示 IG & Discord 圖示) -->
+  <title>國際真主版</title>
+  <!-- 引入 FontAwesome 圖示庫 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     * {
@@ -14,8 +14,7 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     }
     body {
-      /* 多國地標背景 */
-      background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), 
+      background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
                         url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?q=80&w=1600&auto=format&fit=crop');
       background-size: cover;
       background-position: center;
@@ -23,9 +22,9 @@
       background-attachment: fixed;
       min-height: 100vh;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
-      padding: 20px;
+      padding: 20px 15px;
       position: relative;
     }
 
@@ -34,13 +33,12 @@
       position: fixed;
       top: 20px;
       right: 20px;
-      z-index: 999; /* 確保永遠浮在最上層 */
+      z-index: 999;
       display: flex;
-      flex-direction: column; /* 垂直排列：IG 在上，Discord 在下 */
-      gap: 12px; /* 按鈕之間的間隔 */
+      flex-direction: column;
+      gap: 12px;
     }
 
-    /* 社群按鈕通用樣式 */
     .social-btn {
       display: flex;
       align-items: center;
@@ -61,16 +59,15 @@
       font-size: 26px;
     }
 
-    /* IG 按鈕漸層背景 */
     .ig-btn {
       background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
     }
 
-    /* Discord 按鈕經典藍紫色背景 */
     .discord-btn {
       background: #5865F2;
     }
 
+    /* 通用卡片容器 */
     .card {
       background: rgba(255, 255, 255, 0.92);
       backdrop-filter: blur(8px);
@@ -78,8 +75,10 @@
       border-radius: 20px;
       box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
       width: 100%;
-      max-width: 400px;
+      max-width: 450px;
       text-align: center;
+      margin-top: 40px;
+      margin-bottom: 25px;
     }
 
     h2 {
@@ -123,11 +122,70 @@
     button[type="submit"]:hover {
       background: #2980b9;
     }
-    button:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
+
+    /* 往下滑提示指標 */
+    .scroll-down-hint {
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 14px;
+      margin-bottom: 30px;
+      animation: bounce 2s infinite;
     }
-    
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-8px); }
+      60% { transform: translateY(-4px); }
+    }
+
+    /* 國際新聞區塊欄位 */
+    .news-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+      width: 100%;
+      max-width: 450px;
+      margin-bottom: 50px;
+    }
+    .news-card h3 {
+      color: #2c3e50;
+      font-size: 20px;
+      margin-bottom: 15px;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .news-list {
+      list-style: none;
+      text-align: left;
+    }
+    .news-item {
+      padding: 12px 0;
+      border-bottom: 1px solid #eee;
+    }
+    .news-item:last-child {
+      border-bottom: none;
+    }
+    .news-item a {
+      text-decoration: none;
+      color: #2c3e50;
+      font-weight: 600;
+      font-size: 15px;
+      line-height: 1.4;
+      display: block;
+      transition: color 0.2s;
+    }
+    .news-item a:hover {
+      color: #3498db;
+    }
+    .news-date {
+      font-size: 12px;
+      color: #888;
+      margin-top: 5px;
+    }
+
     /* Formspree 狀態訊息樣式 */
     [data-fs-success] {
       display: none;
@@ -138,54 +196,92 @@
       font-weight: bold;
       margin-bottom: 15px;
     }
-    [data-fs-error] {
-      color: #e74c3c;
-      font-size: 13px;
-      margin-top: 5px;
-      text-align: left;
-    }
   </style>
 </head>
 <body>
 
-  <!-- 整個網頁右上角浮動社群按鈕區域 -->
+  <!-- 右上角社群按鈕 -->
   <div class="social-buttons">
-    <!-- 上方：IG 群組按鈕 -->
     <a href="https://ig.me/j/uk7x2r1jqn8SXzO1/" target="_blank" rel="noopener noreferrer" class="social-btn ig-btn" title="加入 IG 群組">
       <i class="fab fa-instagram"></i>
     </a>
-    
-    <!-- 下方：Discord 按鈕 -->
     <a href="https://discord.gg/YTcsfsZtG7" target="_blank" rel="noopener noreferrer" class="social-btn discord-btn" title="加入 Discord 伺服器">
       <i class="fab fa-discord"></i>
     </a>
   </div>
 
+  <!-- 第一區塊：匿名留言板 -->
   <div class="card">
-    <h2>🌍 國際真主匿名</h2>
+    <h2>🌍 真主國際匿名</h2>
     <p>匿名投稿</p>
     
-    <!-- 成功提示區域 -->
     <div data-fs-success>🎉 留言已順利寄出！感謝你的分享！</div>
 
-    <!-- 匿名表單 -->
     <form id="anonymous-form">
       <div>
         <textarea name="message" placeholder="寫下你想說的話..." required data-fs-field></textarea>
-        <div data-fs-error="message"></div>
       </div>
-      
       <button type="submit" data-fs-submit-btn>送出匿名留言</button>
-      <div data-fs-error></div>
     </form>
   </div>
 
-  <!-- Formspree Ajax SDK -->
+  <!-- 向下滑動提示 -->
+  <div class="scroll-down-hint">
+    <i class="fas fa-chevron-down"></i> 往下滑看國際即時新聞
+  </div>
+
+  <!-- 第二區塊：國際即時新聞區（動態更新） -->
+  <div class="news-card">
+    <h3><i class="fas fa-globe-americas" style="color: #3498db;"></i> 國際即時頭條</h3>
+    <ul class="news-list" id="news-container">
+      <li class="news-item">📡 正在取得全球最新新聞資料...</li>
+    </ul>
+  </div>
+
+  <!-- Formspree 腳本 -->
   <script>
     window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
     formspree('initForm', { formElement: '#anonymous-form', formId: 'xbgjqgvr' });
   </script>
   <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
+
+  <!-- 自動抓取國際新聞 JavaScript -->
+  <script>
+    async function fetchWorldNews() {
+      const container = document.getElementById('news-container');
+      try {
+        // 使用免 Key 的即時新聞 RSS 轉 JSON 服務 (BBC World News 國際新聞源)
+        const response = await fetch('https://api.rss2json.com/v1/api.json?rss_url=http%3A%2F%2Ffeeds.bbci.co.uk%2Fnews%2Fworld%2Frss.xml');
+        const data = await response.json();
+
+        if (data.status === 'ok' && data.items.length > 0) {
+          container.innerHTML = '';
+          // 抓取前 5 則最新國際頭條
+          data.items.slice(0, 5).forEach(item => {
+            const li = document.createElement('li');
+            li.className = 'news-item';
+            
+            const dateStr = new Date(item.pubDate).toLocaleString('zh-TW', {
+              month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit'
+            });
+
+            li.innerHTML = `
+              <a href="${item.link}" target="_blank" rel="noopener noreferrer">${item.title}</a>
+              <div class="news-date">🕒 ${dateStr}</div>
+            `;
+            container.appendChild(li);
+          });
+        } else {
+          container.innerHTML = '<li class="news-item">暫時無法取得新聞資訊。</li>';
+        }
+      } catch (error) {
+        container.innerHTML = '<li class="news-item">新聞載入失敗，請稍後再試。</li>';
+      }
+    }
+
+    // 網頁載入時自動執行新聞抓取
+    fetchWorldNews();
+  </script>
 
 </body>
 </html>
