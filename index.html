@@ -49,7 +49,7 @@
       left: 0;
       width: 100vw;
       height: 100vh;
-      background: rgba(0, 0, 0, 0.45);
+      background: rgba(0, 0, 0, 0.4);
       z-index: -1;
       pointer-events: none;
     }
@@ -129,61 +129,95 @@
       background: #5865F2;
     }
 
-    /* 通用卡片容器 (已設定為 85% 不透明度) */
-    .card {
-      background: rgba(255, 255, 255, 0.85); /* 85% 不透明度 */
-      backdrop-filter: blur(8px);
-      padding: 30px;
-      border-radius: 20px;
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    /* 液態玻璃核心樣式 (Liquid Glass Style) */
+    .glass-card {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.15));
+      backdrop-filter: blur(16px) saturate(180%);
+      -webkit-backdrop-filter: blur(16px) saturate(180%);
+      border-radius: 28px;
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25),
+                  inset 0 1px 2px rgba(255, 255, 255, 0.8),
+                  inset 0 -2px 4px rgba(0, 0, 0, 0.1);
       width: 100%;
       max-width: 450px;
+      padding: 30px;
       text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    /* 液態玻璃高光流光效果 */
+    .glass-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0) 60%);
+      pointer-events: none;
+      transform: rotate(30deg);
+    }
+
+    .card {
       margin-top: 60px;
       margin-bottom: 25px;
     }
 
+    .info-card {
+      margin-bottom: 40px;
+    }
+
     h2 {
-      color: #2c3e50;
+      color: #1a252f;
       margin-bottom: 10px;
       font-size: 24px;
+      text-shadow: 0 1px 2px rgba(255, 255, 255, 0.6);
     }
     p {
-      color: #555;
+      color: #2c3e50;
       font-size: 14px;
       margin-bottom: 20px;
       line-height: 1.5;
+      font-weight: 500;
     }
     textarea {
       width: 100%;
       height: 130px;
       padding: 12px;
-      border: 2px solid #ddd;
-      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      border-radius: 16px;
       resize: none;
       font-size: 16px;
       outline: none;
-      transition: border-color 0.3s;
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(8px);
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+      transition: border-color 0.3s, background 0.3s;
     }
     textarea:focus {
       border-color: #3498db;
+      background: rgba(255, 255, 255, 0.75);
     }
     button[type="submit"] {
       margin-top: 15px;
       width: 100%;
       padding: 12px;
-      background: #3498db;
+      background: linear-gradient(135deg, #3498db, #2980b9);
       color: white;
       border: none;
       border-radius: 25px;
       font-size: 16px;
       font-weight: bold;
       cursor: pointer;
-      transition: background 0.3s, opacity 0.3s;
+      box-shadow: 0 6px 18px rgba(52, 152, 219, 0.4);
+      transition: background 0.3s, transform 0.2s;
     }
     button[type="submit"]:hover {
-      background: #2980b9;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 22px rgba(52, 152, 219, 0.5);
     }
 
     /* 往下滑提示指標 */
@@ -200,19 +234,8 @@
       60% { transform: translateY(-4px); }
     }
 
-    /* 資訊卡片通用樣式 (新聞與宗教區塊，已設定為 85% 不透明度) */
-    .info-card {
-      background: rgba(255, 255, 255, 0.85); /* 85% 不透明度 */
-      backdrop-filter: blur(8px);
-      padding: 25px;
-      border-radius: 20px;
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-      width: 100%;
-      max-width: 450px;
-      margin-bottom: 40px;
-    }
     .info-card h3 {
-      color: #2c3e50;
+      color: #1a252f;
       font-size: 20px;
       margin-bottom: 15px;
       text-align: center;
@@ -220,6 +243,7 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
+      text-shadow: 0 1px 2px rgba(255, 255, 255, 0.6);
     }
 
     /* 新聞列表 */
@@ -229,14 +253,14 @@
     }
     .news-item {
       padding: 12px 0;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.3);
     }
     .news-item:last-child {
       border-bottom: none;
     }
     .news-item a {
       text-decoration: none;
-      color: #2c3e50;
+      color: #1a252f;
       font-weight: 600;
       font-size: 15px;
       line-height: 1.4;
@@ -244,11 +268,11 @@
       transition: color 0.2s;
     }
     .news-item a:hover {
-      color: #3498db;
+      color: #2980b9;
     }
     .news-date {
       font-size: 12px;
-      color: #666;
+      color: #4a5568;
       margin-top: 5px;
     }
 
@@ -262,15 +286,16 @@
       justify-content: space-between;
       font-weight: 600;
       font-size: 14px;
-      color: #333;
+      color: #2c3e50;
       margin-bottom: 6px;
     }
     .progress-bar-bg {
       width: 100%;
-      background-color: rgba(0, 0, 0, 0.08);
+      background-color: rgba(255, 255, 255, 0.35);
       height: 10px;
       border-radius: 5px;
       overflow: hidden;
+      box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
     }
     .progress-bar-fill {
       height: 100%;
@@ -279,7 +304,7 @@
     }
     .update-time {
       font-size: 11px;
-      color: #777;
+      color: #4a5568;
       text-align: right;
       margin-top: 10px;
     }
@@ -287,12 +312,13 @@
     /* Formspree 狀態訊息樣式 */
     [data-fs-success] {
       display: none;
-      background: #e8f8f5;
+      background: rgba(232, 248, 245, 0.85);
       color: #27ae60;
       padding: 15px;
       border-radius: 12px;
       font-weight: bold;
       margin-bottom: 15px;
+      backdrop-filter: blur(4px);
     }
   </style>
 </head>
@@ -319,9 +345,9 @@
     </a>
   </div>
 
-  <!-- 第一區塊：匿名留言板 (85% 不透明度) -->
-  <div class="card section-target" data-bg="bg-1">
-    <h2>🌍 國際真主匿名</h2>
+  <!-- 第一區塊：匿名留言板 (液態玻璃風格) -->
+  <div class="glass-card card section-target" data-bg="bg-1">
+    <h2>🌍 國際真主投稿</h2>
     <p>匿名投稿</p>
     
     <div data-fs-success>🎉 留言已順利寄出！感謝你的分享！</div>
@@ -339,19 +365,19 @@
     <i class="fas fa-chevron-down"></i> 往下滑看國際資訊
   </div>
 
-  <!-- 第二區塊：國際即時新聞區 (85% 不透明度) -->
-  <div class="info-card section-target" data-bg="bg-2">
-    <h3><i class="fas fa-globe-americas" style="color: #3498db;"></i> 國際即時頭條</h3>
+  <!-- 第二區塊：國際即時新聞區 (液態玻璃風格) -->
+  <div class="glass-card info-card section-target" data-bg="bg-2">
+    <h3><i class="fas fa-globe-americas" style="color: #2980b9;"></i> 國際即時頭條</h3>
     <ul class="news-list" id="news-container">
       <li class="news-item">📡 正在取得全球最新新聞資料...</li>
     </ul>
   </div>
 
-  <!-- 第三區塊：全球前 5 大宗教信徒百分比 (85% 不透明度) -->
-  <div class="info-card section-target" data-bg="bg-3">
+  <!-- 第三區塊：全球前 5 大宗教信徒百分比 (液態玻璃風格) -->
+  <div class="glass-card info-card section-target" data-bg="bg-3">
     <h3><i class="fas fa-chart-pie" style="color: #e67e22;"></i> 全球前 5 大宗教信徒比例</h3>
     <div id="religion-container">
-      <p style="text-align: center; color: #777;">⏳ 正在連線全球數據中心計算中...</p>
+      <p style="text-align: center; color: #4a5568;">⏳ 正在連線全球數據中心計算中...</p>
     </div>
     <div class="update-time" id="religion-time"></div>
   </div>
@@ -427,11 +453,11 @@
       
       try {
         const religionData = [
-          { name: '✝️ 基督教 (Christianity)', percent: 31.1, color: '#3498db' },
-          { name: '☪️ 伊斯蘭教 (Islam)', percent: 24.9, color: '#2ecc71' },
-          { name: '🕉️ 印度教 (Hinduism)', percent: 15.2, color: '#f1c40f' },
-          { name: '☸️ 佛教 (Buddhism)', percent: 6.6, color: '#e67e22' },
-          { name: '✡️ 民間信仰/其他 (Folk Religions)', percent: 5.6, color: '#9b59b6' }
+          { name: '✝️ 基督教 (Christianity)', percent: 31.1, color: '#2980b9' },
+          { name: '☪️ 伊斯蘭教 (Islam)', percent: 24.9, color: '#27ae60' },
+          { name: '🕉️ 印度教 (Hinduism)', percent: 15.2, color: '#f39c12' },
+          { name: '☸️ 佛教 (Buddhism)', percent: 6.6, color: '#d35400' },
+          { name: '✡️ 民間信仰/其他 (Folk Religions)', percent: 5.6, color: '#8e44ad' }
         ];
 
         container.innerHTML = '';
