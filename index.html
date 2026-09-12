@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>匿名投稿</title>
-  <!-- 引入 FontAwesome 圖示庫 (用於顯示 IG 圖示) -->
+  <!-- 引入 FontAwesome 圖示庫 (用於顯示 IG & Discord 圖示) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     * {
@@ -29,30 +29,46 @@
       position: relative;
     }
 
-    /* 整個網頁右上角固定浮動的 IG 群組按鈕 */
-    .ig-screen-btn {
+    /* 右上角固定浮動社群按鈕區域 */
+    .social-buttons {
       position: fixed;
       top: 20px;
       right: 20px;
       z-index: 999; /* 確保永遠浮在最上層 */
       display: flex;
+      flex-direction: column; /* 垂直排列：IG 在上，Discord 在下 */
+      gap: 12px; /* 按鈕之間的間隔 */
+    }
+
+    /* 社群按鈕通用樣式 */
+    .social-btn {
+      display: flex;
       align-items: center;
       justify-content: center;
       width: 50px;
       height: 50px;
-      background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
       color: white;
       border-radius: 50%;
       text-decoration: none;
       box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
       transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
-    .ig-screen-btn:hover {
+    .social-btn:hover {
       transform: scale(1.12);
       box-shadow: 0 8px 22px rgba(0, 0, 0, 0.45);
     }
-    .ig-screen-btn i {
+    .social-btn i {
       font-size: 26px;
+    }
+
+    /* IG 按鈕漸層背景 */
+    .ig-btn {
+      background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    }
+
+    /* Discord 按鈕經典藍紫色背景 */
+    .discord-btn {
+      background: #5865F2;
     }
 
     .card {
@@ -132,10 +148,18 @@
 </head>
 <body>
 
-  <!-- 整個網頁右上角 IG 按鈕 -->
-  <a href="https://ig.me/j/uk7x2r1jqn8SXzO1/" target="_blank" rel="noopener noreferrer" class="ig-screen-btn" title="加入 IG 群組">
-    <i class="fab fa-instagram"></i>
-  </a>
+  <!-- 整個網頁右上角浮動社群按鈕區域 -->
+  <div class="social-buttons">
+    <!-- 上方：IG 群組按鈕 -->
+    <a href="https://ig.me/j/uk7x2r1jqn8SXzO1/" target="_blank" rel="noopener noreferrer" class="social-btn ig-btn" title="加入 IG 群組">
+      <i class="fab fa-instagram"></i>
+    </a>
+    
+    <!-- 下方：Discord 按鈕 -->
+    <a href="https://discord.gg/YTcsfsZtG7" target="_blank" rel="noopener noreferrer" class="social-btn discord-btn" title="加入 Discord 伺服器">
+      <i class="fab fa-discord"></i>
+    </a>
+  </div>
 
   <div class="card">
     <h2>🌍 國際真主匿名</h2>
