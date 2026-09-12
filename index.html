@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>國際真主版</title>
+  <title>國際真主交流版</title>
   <!-- 引入 FontAwesome 圖示庫 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
@@ -13,13 +13,8 @@
       padding: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     }
+
     body {
-      background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
-                        url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?q=80&w=1600&auto=format&fit=crop');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -28,13 +23,45 @@
       position: relative;
     }
 
+    /* 多重全螢幕動態切換背景 */
+    .bg-layer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      z-index: -2;
+      opacity: 0;
+      transition: opacity 1.2s ease-in-out;
+    }
+
+    /* 預設顯示第一個景點 */
+    .bg-layer.active {
+      opacity: 1;
+    }
+
+    /* 黑色半透明遮罩，確保文字與卡片清晰 */
+    .bg-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.45);
+      z-index: -1;
+      pointer-events: none;
+    }
+
     /* 左上角木質掛牌風格框框 */
     .hanging-sign {
       position: fixed;
       top: 15px;
       left: 15px;
       z-index: 999;
-      background: #8b5a2b; /* 木質配色 */
+      background: #8b5a2b;
       color: #fff8dc;
       padding: 12px 16px;
       border-radius: 8px;
@@ -48,7 +75,6 @@
       transform-origin: top center;
       animation: swing 3s ease-in-out infinite alternate;
     }
-    /* 掛牌頂部小繩子點綴 */
     .hanging-sign::before {
       content: '';
       position: absolute;
@@ -60,7 +86,6 @@
       border-left: 2px solid #d4a373;
       border-right: 2px solid #d4a373;
     }
-    /* 微小懸掛搖晃動畫 */
     @keyframes swing {
       0% { transform: rotate(2deg); }
       100% { transform: rotate(-2deg); }
@@ -163,10 +188,11 @@
 
     /* 往下滑提示指標 */
     .scroll-down-hint {
-      color: rgba(255, 255, 255, 0.85);
+      color: rgba(255, 255, 255, 0.9);
       font-size: 14px;
       margin-bottom: 30px;
       animation: bounce 2s infinite;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
     }
     @keyframes bounce {
       0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
@@ -183,7 +209,7 @@
       box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
       width: 100%;
       max-width: 450px;
-      margin-bottom: 30px;
+      margin-bottom: 40px;
     }
     .info-card h3 {
       color: #2c3e50;
@@ -272,9 +298,15 @@
 </head>
 <body>
 
+  <!-- 動態景點背景圖層 -->
+  <div class="bg-layer active" id="bg-1" style="background-image: url('https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=1600&auto=format&fit=crop');"></div> <!-- 巴黎艾菲爾鐵塔 -->
+  <div class="bg-layer" id="bg-2" style="background-image: url('https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?q=80&w=1600&auto=format&fit=crop');"></div> <!-- 日本富士山 -->
+  <div class="bg-layer" id="bg-3" style="background-image: url('https://images.unsplash.com/photo-1564507592333-c60657eea523?q=80&w=1600&auto=format&fit=crop');"></div> <!-- 印度泰姬瑪哈陵 -->
+  <div class="bg-overlay"></div>
+
   <!-- 左上角懸掛告示牌 -->
   <div class="hanging-sign">
-    🪧 當你在外面聽到真主保佑時，請大聲回答：阿們
+    🪧 當你在外面聽到真主保佑時，請大喊：阿們
   </div>
 
   <!-- 右上角社群按鈕 -->
@@ -287,8 +319,8 @@
     </a>
   </div>
 
-  <!-- 第一區塊：匿名留言板 -->
-  <div class="card">
+  <!-- 第一區塊：匿名留言板（對應景點 1：巴黎） -->
+  <div class="card section-target" data-bg="bg-1">
     <h2>🌍 國際真主匿名</h2>
     <p>匿名投稿</p>
     
@@ -307,16 +339,16 @@
     <i class="fas fa-chevron-down"></i> 往下滑看國際資訊
   </div>
 
-  <!-- 第二區塊：國際即時新聞區（動態更新） -->
-  <div class="info-card">
+  <!-- 第二區塊：國際即時新聞區（對應景點 2：富士山） -->
+  <div class="info-card section-target" data-bg="bg-2">
     <h3><i class="fas fa-globe-americas" style="color: #3498db;"></i> 國際即時頭條</h3>
     <ul class="news-list" id="news-container">
       <li class="news-item">📡 正在取得全球最新新聞資料...</li>
     </ul>
   </div>
 
-  <!-- 第三區塊：全球前 5 大宗教信徒百分比（動態計算） -->
-  <div class="info-card">
+  <!-- 第三區塊：全球前 5 大宗教信徒百分比（對應景點 3：泰姬瑪哈陵） -->
+  <div class="info-card section-target" data-bg="bg-3">
     <h3><i class="fas fa-chart-pie" style="color: #e67e22;"></i> 全球前 5 大宗教信徒比例</h3>
     <div id="religion-container">
       <p style="text-align: center; color: #777;">⏳ 正在連線全球數據中心計算中...</p>
@@ -331,8 +363,36 @@
   </script>
   <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 
-  <!-- 自動抓取國際新聞與宗教數據 JavaScript -->
+  <!-- 動態背景切換與數據 API 腳本 -->
   <script>
+    // 滾動偵測：當區塊進入畫面中央時自動切換背景
+    const sections = document.querySelectorAll('.section-target');
+    const bgLayers = document.querySelectorAll('.bg-layer');
+
+    const observerOptions = {
+      root: null,
+      rootMargin: '-20% 0px -20% 0px',
+      threshold: 0.3
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const targetBgId = entry.target.getAttribute('data-bg');
+          bgLayers.forEach(layer => {
+            if (layer.id === targetBgId) {
+              layer.classList.add('active');
+            } else {
+              layer.classList.remove('active');
+            }
+          });
+        }
+      });
+    }, observerOptions);
+
+    sections.forEach(section => observer.observe(section));
+
+    // 抓取新聞
     async function fetchWorldNews() {
       const container = document.getElementById('news-container');
       try {
@@ -363,6 +423,7 @@
       }
     }
 
+    // 抓取宗教數據
     async function fetchReligionData() {
       const container = document.getElementById('religion-container');
       const timeContainer = document.getElementById('religion-time');
