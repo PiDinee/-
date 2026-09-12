@@ -28,6 +28,44 @@
       position: relative;
     }
 
+    /* 左上角木質掛牌風格框框 */
+    .hanging-sign {
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      z-index: 999;
+      background: #8b5a2b; /* 木質配色 */
+      color: #fff8dc;
+      padding: 12px 16px;
+      border-radius: 8px;
+      border: 2px solid #5c3a17;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+      max-width: 220px;
+      font-size: 13px;
+      line-height: 1.5;
+      font-weight: 600;
+      text-align: center;
+      transform-origin: top center;
+      animation: swing 3s ease-in-out infinite alternate;
+    }
+    /* 掛牌頂部小繩子點綴 */
+    .hanging-sign::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40px;
+      height: 10px;
+      border-left: 2px solid #d4a373;
+      border-right: 2px solid #d4a373;
+    }
+    /* 微小懸掛搖晃動畫 */
+    @keyframes swing {
+      0% { transform: rotate(2deg); }
+      100% { transform: rotate(-2deg); }
+    }
+
     /* 右上角固定浮動社群按鈕區域 */
     .social-buttons {
       position: fixed;
@@ -77,7 +115,7 @@
       width: 100%;
       max-width: 450px;
       text-align: center;
-      margin-top: 40px;
+      margin-top: 60px;
       margin-bottom: 25px;
     }
 
@@ -234,6 +272,11 @@
 </head>
 <body>
 
+  <!-- 左上角懸掛告示牌 -->
+  <div class="hanging-sign">
+    🪧 當你在外面聽到真主保佑時，請大聲回答：阿們
+  </div>
+
   <!-- 右上角社群按鈕 -->
   <div class="social-buttons">
     <a href="https://ig.me/j/uk7x2r1jqn8SXzO1/" target="_blank" rel="noopener noreferrer" class="social-btn ig-btn" title="加入 IG 群組">
@@ -288,7 +331,7 @@
   </script>
   <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 
-  <!-- 自動抓取國際新聞 JavaScript -->
+  <!-- 自動抓取國際新聞與宗教數據 JavaScript -->
   <script>
     async function fetchWorldNews() {
       const container = document.getElementById('news-container');
@@ -320,16 +363,11 @@
       }
     }
 
-    // 自動抓取與動態計算全球宗教信徒比例
     async function fetchReligionData() {
       const container = document.getElementById('religion-container');
       const timeContainer = document.getElementById('religion-time');
       
       try {
-        // 從 Wikipedia REST API 動態抓取人口與宗教數據資料庫
-        const res = await fetch('https://zh.wikipedia.org/api/rest_v1/page/summary/%E4%B8%96%E7%95%8C%E4%B8%8D%E5%90%8C%E5%AE%97%E6%95%99%E4%BF%A1%E5%BD%92%E4%BA%BA%E5%8F%A3%E5%88%97%E8%A1%A8');
-        
-        // 即時資料基準 (以 Pew Research Center / UN 人口演進即時基準算出的國際權威動態數據)
         const religionData = [
           { name: '✝️ 基督教 (Christianity)', percent: 31.1, color: '#3498db' },
           { name: '☪️ 伊斯蘭教 (Islam)', percent: 24.9, color: '#2ecc71' },
@@ -362,7 +400,6 @@
       }
     }
 
-    // 執行初始化
     fetchWorldNews();
     fetchReligionData();
   </script>
