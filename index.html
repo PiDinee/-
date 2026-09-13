@@ -156,6 +156,7 @@
       flex-direction: column;
       box-shadow: 5px 0 25px rgba(0,0,0,0.5);
       transition: left 0.3s ease-in-out;
+      overflow-y: auto;
     }
     .side-drawer.open {
       left: 0;
@@ -167,7 +168,7 @@
       align-items: center;
       padding-bottom: 15px;
       border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-      margin-bottom: 20px;
+      margin-bottom: 15px;
     }
     .drawer-header h3 {
       color: #fff8dc;
@@ -189,20 +190,37 @@
       color: #fff;
     }
 
+    /* 選單分區小標題 */
+    .menu-section-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: #d4a373;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin: 10px 0 6px 4px;
+    }
+
+    /* 選單區塊間的分隔細線 */
+    .menu-divider {
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
+      margin: 12px 0;
+    }
+
     .menu-list {
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 8px;
     }
     .menu-item a {
       display: flex;
       align-items: center;
       gap: 12px;
-      padding: 12px 16px;
+      padding: 10px 14px;
       color: #e2e8f0;
       text-decoration: none;
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 500;
       border-radius: 10px;
       background: rgba(255, 255, 255, 0.05);
@@ -461,7 +479,6 @@
       margin-top: 10px;
     }
 
-    /* 天氣列表風格 */
     .weather-grid {
       display: flex;
       flex-direction: column;
@@ -530,12 +547,10 @@
       <h3><i class="fas fa-compass"></i> 網站導覽</h3>
       <button class="close-drawer-btn" id="close-menu-btn">&times;</button>
     </div>
+    
+    <!-- 國際區塊 -->
+    <div class="menu-section-title">🌐 國際資訊</div>
     <ul class="menu-list">
-      <li class="menu-item">
-        <a href="#section-submission" class="menu-link">
-          <i class="fas fa-paper-plane"></i> 投稿區域
-        </a>
-      </li>
       <li class="menu-item">
         <a href="#section-news" class="menu-link">
           <i class="fas fa-newspaper"></i> 國際新聞
@@ -549,6 +564,19 @@
       <li class="menu-item">
         <a href="#section-weather" class="menu-link">
           <i class="fas fa-cloud-sun"></i> 城市氣象
+        </a>
+      </li>
+    </ul>
+
+    <!-- 中間分隔細線 -->
+    <div class="menu-divider"></div>
+
+    <!-- 科技與互動區塊 -->
+    <div class="menu-section-title">💻 科技與互動</div>
+    <ul class="menu-list">
+      <li class="menu-item">
+        <a href="#section-submission" class="menu-link">
+          <i class="fas fa-paper-plane"></i> 匿名投稿
         </a>
       </li>
     </ul>
@@ -604,7 +632,7 @@
     <div class="update-time" id="religion-time"></div>
   </div>
 
-  <!-- 新增：第四區塊：世界重要城市氣象區 -->
+  <!-- 第四區塊：世界重要城市氣象區 -->
   <div class="glass-card info-card section-target" id="section-weather" data-bg="bg-4">
     <h3><i class="fas fa-cloud-sun" style="color: #f39c12;"></i> 世界重要城市氣象</h3>
     <div class="weather-grid" id="weather-container">
@@ -747,7 +775,6 @@
       }
     }
 
-    // 即時連線抓取 Open-Meteo 免費氣象 API 數據
     async function fetchWeatherData() {
       const container = document.getElementById('weather-container');
       const cities = [
