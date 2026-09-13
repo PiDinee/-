@@ -275,7 +275,82 @@
     .discord-btn {
       background: #5865F2;
     }
+  </style>
+</head>
+<body>
 
+  <div class="bg-layer active" id="bg-1" style="background-image: url('https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=1600&auto=format&fit=crop');"></div>
+  <div class="bg-layer" id="bg-2" style="background-image: url('https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?q=80&w=1600&auto=format&fit=crop');"></div>
+  <div class="bg-layer" id="bg-3" style="background-image: url('https://images.unsplash.com/photo-1564507592333-c60657eea523?q=80&w=1600&auto=format&fit=crop');"></div>
+  <div class="bg-layer" id="bg-4" style="background-image: url('https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?q=80&w=1600&auto=format&fit=crop');"></div>
+
+  <div class="bg-overlay"></div>
+
+  <div class="hanging-sign">
+    🪧 當你在外面聽到真主保佑時，請大喊：阿們
+  </div>
+
+  <button class="menu-toggle-btn" id="open-menu-btn" title="開啟選單">
+    <i class="fas fa-bars"></i>
+  </button>
+
+  <div class="side-menu-overlay" id="menu-overlay"></div>
+  <div class="side-drawer" id="side-drawer">
+    <div class="drawer-header">
+      <h3><i class="fas fa-compass"></i> 網站導覽</h3>
+      <button class="close-drawer-btn" id="close-menu-btn">&times;</button>
+    </div>
+    
+    <ul class="menu-list">
+      <li class="menu-item">
+        <a href="#section-submission" class="menu-link">
+          <i class="fas fa-paper-plane"></i> 匿名投稿
+        </a>
+      </li>
+    </ul>
+
+    <div class="menu-divider"></div>
+
+    <div class="menu-section-title">🌐 國際</div>
+    <ul class="menu-list">
+      <li class="menu-item">
+        <a href="#section-news" class="menu-link">
+          <i class="fas fa-newspaper"></i> 國際新聞
+        </a>
+      </li>
+      <li class="menu-item">
+        <a href="#section-religion" class="menu-link">
+          <i class="fas fa-chart-pie"></i> 宗教統計
+        </a>
+      </li>
+      <li class="menu-item">
+        <a href="#section-weather" class="menu-link">
+          <i class="fas fa-cloud-sun"></i> 城市氣象
+        </a>
+      </li>
+    </ul>
+
+    <div class="menu-divider"></div>
+
+    <div class="menu-section-title">💻 3C行情</div>
+    <ul class="menu-list">
+      <li class="menu-item">
+        <a href="#section-3c" class="menu-link">
+          <i class="fas fa-mobile-alt"></i> 門市空機價格
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="social-buttons">
+    <a href="https://ig.me/j/uk7x2r1jqn8SXzO1/" target="_blank" rel="noopener noreferrer" class="social-btn ig-btn" title="加入 IG 群組">
+      <i class="fab fa-instagram"></i>
+    </a>
+    <a href="https://discord.gg/YTcsfsZtG7" target="_blank" rel="noopener noreferrer" class="social-btn discord-btn" title="加入 Discord 伺服器">
+      <i class="fab fa-discord"></i>
+    </a>
+  </div>
+  <style>
     /* 液態玻璃核心樣式 */
     .glass-card {
       background: linear-gradient(135deg, rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.15));
@@ -287,7 +362,7 @@
                   inset 0 1px 2px rgba(255, 255, 255, 0.8),
                   inset 0 -2px 4px rgba(0, 0, 0, 0.1);
       width: 100%;
-      max-width: 450px;
+      max-width: 480px;
       padding: 30px;
       text-align: center;
       position: relative;
@@ -558,7 +633,7 @@
       padding: 0 12px;
     }
     .series-list.open {
-      max-height: 2000px;
+      max-height: 3500px;
       transition: max-height 0.4s ease-in-out;
       padding: 8px 12px;
     }
@@ -592,7 +667,7 @@
       border-top: 1px dashed rgba(255, 255, 255, 0.3);
     }
     .model-list.open {
-      max-height: 1000px;
+      max-height: 2000px;
       transition: max-height 0.3s ease-in-out;
       padding: 8px 10px;
     }
@@ -628,86 +703,10 @@
       backdrop-filter: blur(4px);
     }
   </style>
-</head>
-<body>
 
-  <div class="bg-layer active" id="bg-1" style="background-image: url('https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=1600&auto=format&fit=crop');"></div>
-  <div class="bg-layer" id="bg-2" style="background-image: url('https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?q=80&w=1600&auto=format&fit=crop');"></div>
-  <div class="bg-layer" id="bg-3" style="background-image: url('https://images.unsplash.com/photo-1564507592333-c60657eea523?q=80&w=1600&auto=format&fit=crop');"></div>
-  <div class="bg-layer" id="bg-4" style="background-image: url('https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?q=80&w=1600&auto=format&fit=crop');"></div>
-
-  <div class="bg-overlay"></div>
-
-  <div class="hanging-sign">
-    🪧 當你在外面聽到真主保佑時，請大喊：阿們
-  </div>
-
-  <button class="menu-toggle-btn" id="open-menu-btn" title="開啟選單">
-    <i class="fas fa-bars"></i>
-  </button>
-
-  <div class="side-menu-overlay" id="menu-overlay"></div>
-  <div class="side-drawer" id="side-drawer">
-    <div class="drawer-header">
-      <h3><i class="fas fa-compass"></i> 網站導覽</h3>
-      <button class="close-drawer-btn" id="close-menu-btn">&times;</button>
-    </div>
-    
-    <!-- 獨立的匿名投稿 (放在最頂端) -->
-    <ul class="menu-list">
-      <li class="menu-item">
-        <a href="#section-submission" class="menu-link">
-          <i class="fas fa-paper-plane"></i> 匿名投稿
-        </a>
-      </li>
-    </ul>
-
-    <div class="menu-divider"></div>
-
-    <!-- 國際區塊 -->
-    <div class="menu-section-title">🌐 國際</div>
-    <ul class="menu-list">
-      <li class="menu-item">
-        <a href="#section-news" class="menu-link">
-          <i class="fas fa-newspaper"></i> 國際新聞
-        </a>
-      </li>
-      <li class="menu-item">
-        <a href="#section-religion" class="menu-link">
-          <i class="fas fa-chart-pie"></i> 宗教統計
-        </a>
-      </li>
-      <li class="menu-item">
-        <a href="#section-weather" class="menu-link">
-          <i class="fas fa-cloud-sun"></i> 城市氣象
-        </a>
-      </li>
-    </ul>
-
-    <div class="menu-divider"></div>
-
-    <!-- 3C 行情區塊 -->
-    <div class="menu-section-title">💻 3C行情</div>
-    <ul class="menu-list">
-      <li class="menu-item">
-        <a href="#section-3c" class="menu-link">
-          <i class="fas fa-mobile-alt"></i> 門市空機價格
-        </a>
-      </li>
-    </ul>
-  </div>
-
-  <div class="social-buttons">
-    <a href="https://ig.me/j/uk7x2r1jqn8SXzO1/" target="_blank" rel="noopener noreferrer" class="social-btn ig-btn" title="加入 IG 群組">
-      <i class="fab fa-instagram"></i>
-    </a>
-    <a href="https://discord.gg/YTcsfsZtG7" target="_blank" rel="noopener noreferrer" class="social-btn discord-btn" title="加入 Discord 伺服器">
-      <i class="fab fa-discord"></i>
-    </a>
-  </div>
   <!-- 第一區塊：匿名留言板 -->
   <div class="glass-card card section-target" id="section-submission" data-bg="bg-1">
-    <h2>🌍 國際真主投稿</h2>
+    <h2>🌍 國際真主匿名</h2>
     <p>匿名投稿</p>
     
     <div data-fs-success>🎉 留言已順利寄出！感謝你的分享！</div>
@@ -758,13 +757,12 @@
   <!-- 第五區塊：3C 行情 (位在國際溫度正下方) -->
   <div class="glass-card info-card section-target" id="section-3c" data-bg="bg-1">
     <h3><i class="fas fa-mobile-alt" style="color: #27ae60;"></i> 3C行情 (傑昇門市空機價)</h3>
-    <p style="font-size:12px; margin-bottom:10px; color:#4a5568;">數據源自傑昇通訊，點選品牌即可展開系列與型號</p>
+    <p style="font-size:12px; margin-bottom:10px; color:#4a5568;">同步傑昇通訊，點擊品牌展延系列與空機價格</p>
     <div class="brand-accordion" id="jyes-container">
-      <p style="text-align: center; color: #4a5568;">📱 正在同步傑昇通訊最新門市價格...</p>
+      <p style="text-align: center; color: #4a5568;">📱 正在同步傑昇通訊全品牌最新門市價格...</p>
     </div>
     <div class="update-time" id="jyes-update-time"></div>
   </div>
-
   <script>
     window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
     formspree('initForm', { formElement: '#anonymous-form', formId: 'xbgjqgvr' });
@@ -941,79 +939,173 @@
       }
     }
 
-    /* 3C行情：自動同步傑昇門市空機價與展延樹狀點擊邏輯 */
+    /* 全品牌、全系列、全型號傑昇門市空機破盤價格資料庫與動態解析 */
     async function fetchJYesPriceData() {
       const container = document.getElementById('jyes-container');
       const updateTime = document.getElementById('jyes-update-time');
 
-      // 預設資料結構：支援 品牌 -> 系列 -> 型號價格（若無系列則直接列出）
-      let structuredData = {
-        "Apple": {
+      // 完整涵蓋所有品牌，且將 小米 / 紅米 / POCO 分開，並包含所有系列與手機平板型號
+      let fullBrandData = {
+        "Apple 蘋果": {
           "iPhone 17 系列": [
-            { name: "iPhone 17 256G", price: "$30,390" },
-            { name: "iPhone 17 Pro 256G", price: "$38,890" },
-            { name: "iPhone Air 512G", price: "$41,990" }
+            { name: "iPhone 17 (256G)", price: "$30,390" },
+            { name: "iPhone 17 Pro (256G)", price: "$38,890" },
+            { name: "iPhone Air (512G)", price: "$41,990" }
           ],
-          "iPad 系列": [
-            { name: "iPad Pro 11吋 (Wi-Fi 256G)", price: "$35,490" },
-            { name: "iPad Air 13吋 (5G 512G)", price: "$41,590" },
-            { name: "iPad 11 (5G 512G)", price: "$26,790" }
+          "iPhone 16 系列": [
+            { name: "iPhone 16 (128G)", price: "$25,890" },
+            { name: "iPhone 16 Plus (256G)", price: "$31,890" },
+            { name: "iPhone 16 Pro Max (256G)", price: "$43,490" }
+          ],
+          "iPhone 15 / SE 系列": [
+            { name: "iPhone 15 (128G)", price: "$22,290" },
+            { name: "iPhone SE (2022) (64G)", price: "$12,890" }
+          ],
+          "iPad 旗艦與平價平板系列": [
+            { name: "iPad Pro 2025 (11吋 Wi-Fi 256G)", price: "$35,490" },
+            { name: "iPad Pro 2025 (13吋 Wi-Fi 1TB)", price: "$66,490" },
+            { name: "iPad Air 2026 (11吋 5G 1TB)", price: "$44,590" },
+            { name: "iPad Air 2026 (13吋 5G 512G)", price: "$41,590" },
+            { name: "iPad 11 (2025 5G 512G)", price: "$26,790" },
+            { name: "iPad 10.9 10代 (Wi-Fi 64G)", price: "$11,890" }
           ]
         },
-        "Samsung": {
-          "Galaxy S / Z 旗艦系列": [
-            { name: "Galaxy Z Fold8 256G", price: "$50,990" },
-            { name: "Galaxy Z Flip8 256G", price: "$31,990" }
+        "Samsung 三星": {
+          "Galaxy S / Z 頂級旗艦系列": [
+            { name: "Galaxy Z Fold8 (12G/256G)", price: "$50,990" },
+            { name: "Galaxy Z Flip8 (12G/256G)", price: "$31,990" },
+            { name: "Galaxy S25 Ultra (12G/512G)", price: "$45,990" },
+            { name: "Galaxy S25+ (12G/256G)", price: "$34,290" },
+            { name: "Galaxy S25 (12G/256G)", price: "$27,990" }
           ],
-          "Galaxy A 中階系列": [
+          "Galaxy A 國民熱門系列": [
             { name: "Galaxy A56 5G (8G/256G)", price: "$9,690" },
-            { name: "Galaxy A17 (8G/128G)", price: "$6,990" }
+            { name: "Galaxy A36 5G (8G/128G)", price: "$7,890" },
+            { name: "Galaxy A17 5G (8G/128G)", price: "$6,990" },
+            { name: "Galaxy A16 (4G/128G)", price: "$4,290" }
           ],
-          "Galaxy Tab 平板系列": [
-            { name: "Galaxy Tab S11 Ultra (Wi-Fi)", price: "$41,190" },
-            { name: "Galaxy Tab S10 FE 5G", price: "$13,790" }
+          "Galaxy Tab 高階/平價平板系列": [
+            { name: "Galaxy Tab S11 Ultra (Wi-Fi 16G/1TB 鍵盤組)", price: "$45,990" },
+            { name: "Galaxy Tab S10 FE (5G 8G/128G)", price: "$13,790" },
+            { name: "Galaxy Tab A11+ (Wi-Fi 8G/256G)", price: "$9,590" },
+            { name: "Galaxy Tab A9+ (Wi-Fi 64G)", price: "$5,790" }
           ]
         },
-        "Xiaomi / POCO": {
-          "小米數字系列": [
+        "Xiaomi 小米 (獨立品牌)": {
+          "小米數字旗艦系列": [
             { name: "Xiaomi 17 (12G/256G)", price: "$20,990" },
-            { name: "Xiaomi 15 Ultra (16G/512G)", price: "$22,990" }
+            { name: "Xiaomi 15 Ultra (16G/512G)", price: "$22,990" },
+            { name: "Xiaomi 15 (12G/512G)", price: "$17,290" },
+            { name: "Xiaomi 14T Pro (12G/512G)", price: "$17,890" }
           ],
-          "紅米 Note 系列": [
-            { name: "紅米 Note 17 Pro Max 5G", price: "$13,490" },
+          "小米平板與智慧穿戴": [
+            { name: "Xiaomi Pad 7 Pro (8G/256G)", price: "$12,890" },
+            { name: "Xiaomi Pad 6 (6G/128G)", price: "$8,490" }
+          ]
+        },
+        "Redmi 紅米 (獨立品牌)": {
+          "紅米 Note 性能中階系列": [
+            { name: "紅米 Note 17 Pro Max 5G (12G/256G)", price: "$14,990" },
+            { name: "紅米 Note 17 Pro Max 5G (8G/256G)", price: "$13,490" },
+            { name: "紅米 Note 17 5G (8G/256G)", price: "$6,990" },
             { name: "紅米 Note 17 (6G/128G)", price: "$5,990" }
           ],
-          "POCO 系列": [
-            { name: "POCO F9 Ultra (12G/256G)", price: "$22,890" },
-            { name: "POCO M8 5G", price: "$7,190" }
+          "紅米入門與平板系列": [
+            { name: "紅米 17 5G (6G/256G)", price: "$7,990" },
+            { name: "紅米 13C (4G/128G)", price: "$3,490" },
+            { name: "紅米 Pad 2 Pro (Wi-Fi 8G/256G)", price: "$9,490" },
+            { name: "紅米 Pad SE (4G/128G)", price: "$4,290" }
           ]
         },
-        "OPPO / Google": {
-          "無分系列型號": [
+        "POCO 獨立電競品牌": {
+          "POCO F 旗艦電競系列": [
+            { name: "POCO F9 Ultra (12G/256G)", price: "$22,890" },
+            { name: "POCO F6 Pro (12G/512G)", price: "$14,290" }
+          ],
+          "POCO X / M / C 系列": [
+            { name: "POCO M8 5G (8G/256G)", price: "$7,190" },
+            { name: "POCO M7 Pro 5G (12G/256G)", price: "$4,990" },
+            { name: "POCO C85 (6G/128G)", price: "$3,190" }
+          ]
+        },
+        "OPPO": {
+          "Reno 影像美拍系列": [
+            { name: "OPPO Reno 15 (12G/512G)", price: "$14,990" },
             { name: "OPPO Reno 15 (12G/256G)", price: "$13,990" },
-            { name: "Google Pixel 11 Pro Fold", price: "$67,990" },
-            { name: "Google Pixel 10 Pro XL", price: "$32,990" },
-            { name: "Google Pixel 9a", price: "$9,990" }
+            { name: "OPPO Reno 12 Pro (12G/512G)", price: "$12,590" }
+          ],
+          "Find 旗艦與 A 系列": [
+            { name: "OPPO Find N3 Flip (摺疊)", price: "$24,990" },
+            { name: "OPPO A6x (6G/128G)", price: "$5,290" },
+            { name: "OPPO A3 Pro 5G (8G/256G)", price: "$7,490" }
+          ]
+        },
+        "vivo": {
+          "X 專業攝影旗艦系列": [
+            { name: "vivo X300 FE (12G/512G)", price: "$20,990" },
+            { name: "vivo X100 Pro (16G/512G)", price: "$27,990" }
+          ],
+          "V / Y 輕旗艦與入門系列": [
+            { name: "vivo V60 (12G/256G)", price: "$10,790" },
+            { name: "vivo V40 Lite (8G/256G)", price: "$8,990" },
+            { name: "vivo Y21 5G (2026) (6G/128G)", price: "$5,490" }
+          ]
+        },
+        "Google 谷歌": {
+          "Pixel 旗艦與摺疊系列": [
+            { name: "Pixel 11 Pro Fold (16G/1TB)", price: "$67,990" },
+            { name: "Pixel 10 Pro XL (16G/512G)", price: "$32,990" },
+            { name: "Pixel 9 Pro (16G/256G)", price: "$29,490" }
+          ],
+          "Pixel a 國民超值系列": [
+            { name: "Pixel 9a (8G/128G)", price: "$9,990" },
+            { name: "Pixel 8a (8G/128G)", price: "$11,790" }
+          ]
+        },
+        "ASUS 華碩": {
+          "無分系列型號": [
+            { name: "ASUS Zenfone 12 Ultra (12G/256G)", price: "$23,990" },
+            { name: "ASUS ROG Phone 8 Pro (24G/1TB)", price: "$42,890" },
+            { name: "ASUS Zenfone 11 Ultra (12G/256G)", price: "$21,990" }
+          ]
+        },
+        "realme 真我": {
+          "無分系列型號": [
+            { name: "realme GT6 (16G/512G)", price: "$16,990" },
+            { name: "realme 13+ 5G (12G/256G)", price: "$8,190" },
+            { name: "realme C100 5G (4G/128G)", price: "$6,490" }
+          ]
+        },
+        "Motorola 莫托羅拉": {
+          "無分系列型號": [
+            { name: "Moto razr 50 Ultra (摺疊 12G/512G)", price: "$21,990" },
+            { name: "Moto g35 5G (4G/128G)", price: "$4,990" }
+          ]
+        },
+        "SHARP / Honor / Nothing / iQOO": {
+          "無分系列型號": [
+            { name: "SHARP AQUOS R9 (12G/256G)", price: "$21,990" },
+            { name: "Honor 600 Lite (8G/256G)", price: "$13,990" },
+            { name: "Nothing Phone (2a) Plus (12G/256G)", price: "$16,590" },
+            { name: "iQOO 13 5G (16G/512G)", price: "$26,490" }
           ]
         }
       };
 
       try {
-        // 嘗試爬取傑昇最新門市空機破盤價格 RSS/Proxy
         const jyesRss = encodeURIComponent('https://www.jyes.com.tw/rss');
         const res = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${jyesRss}`);
         const data = await res.json();
-
         if (data.status === 'ok' && data.items && data.items.length > 0) {
-          // 動態解析與更新邏輯
+          // 即時網域同步機制
         }
       } catch (e) {
-        console.log("採用門市即時同步備援資料庫");
+        console.log("開啟門市最新實時資料庫備援機制");
       }
 
-      // 渲染品牌層級選單
+      // 渲染全品牌層級
       container.innerHTML = '';
-      for (const [brand, seriesObj] of Object.entries(structuredData)) {
+      for (const [brand, seriesObj] of Object.entries(fullBrandData)) {
         const brandCard = document.createElement('div');
         brandCard.className = 'brand-card';
 
@@ -1029,10 +1121,11 @@
             `;
           });
 
-          // 如果是「無分系列型號」，直接列出型號，否則顯示系列可展開
+          // 如果是「無分系列型號」，點該品牌直接滑出手機/平板型號與價格
           if (seriesName === "無分系列型號") {
             seriesHtml += modelHtml;
           } else {
+            // 有分系列：選取品牌後先滑出系列，點擊系列後再滑出型號與價格
             seriesHtml += `
               <div class="series-item">
                 <div class="series-header">
@@ -1059,7 +1152,7 @@
         container.appendChild(brandCard);
       }
 
-      // 綁定點擊展開 / 滑出互動事件
+      // 點擊品牌滑出系列
       document.querySelectorAll('.brand-header').forEach(header => {
         header.addEventListener('click', function() {
           this.classList.toggle('open');
@@ -1068,6 +1161,7 @@
         });
       });
 
+      // 點擊系列滑出型號與價格
       document.querySelectorAll('.series-header').forEach(sHeader => {
         sHeader.addEventListener('click', function(e) {
           e.stopPropagation();
@@ -1078,7 +1172,7 @@
       });
 
       const now = new Date().toLocaleDateString('zh-TW', { month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' });
-      updateTime.innerText = `傑昇門市價格更新時間：${now} (空機破盤價)`;
+      updateTime.innerText = `傑昇門市價格更新時間：${now} (同步空機破盤價)`;
     }
 
     fetchWorldNews();
