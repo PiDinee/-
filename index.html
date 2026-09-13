@@ -3,19 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>國際真主版</title>
-  <!-- 引入 FontAwesome 圖示庫 -->
+  <title>國際真主匿名 & 3C 行情即時網</title>
+  
+  <!-- FontAwesome 圖示庫 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
   <style>
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    }
-
-    html {
-      scroll-behavior: smooth;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     }
 
     body {
@@ -23,118 +21,92 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 20px 15px;
+      justify-content: flex-start;
+      padding: 60px 20px 40px;
+      color: #2d3748;
       position: relative;
     }
 
-    /* 多重全螢幕動態切換背景 */
+    /* 背景圖片與漸層遮罩 */
     .bg-layer {
       position: fixed;
       top: 0;
       left: 0;
-      width: 100vw;
-      height: 100vh;
+      width: 100%;
+      height: 100%;
       background-size: cover;
       background-position: center;
-      background-repeat: no-repeat;
-      z-index: -2;
       opacity: 0;
-      transition: opacity 1.2s ease-in-out;
+      transition: opacity 1s ease-in-out;
+      z-index: -2;
     }
-
     .bg-layer.active {
       opacity: 1;
     }
-
-    /* 黑色半透明遮罩 */
     .bg-overlay {
       position: fixed;
       top: 0;
       left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(0, 0, 0, 0.4);
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.4);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
       z-index: -1;
-      pointer-events: none;
     }
 
-    /* 左上角木質掛牌風格框框 */
+    /* 懸掛告示牌 */
     .hanging-sign {
-      position: fixed;
-      top: 15px;
-      left: 15px;
-      z-index: 999;
-      background: #8b5a2b;
-      color: #fff8dc;
-      padding: 12px 16px;
-      border-radius: 8px;
-      border: 2px solid #5c3a17;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-      max-width: 220px;
-      font-size: 13px;
-      line-height: 1.5;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      padding: 10px 20px;
+      border-radius: 30px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
       font-weight: 600;
+      font-size: 14px;
+      color: #2c3e50;
+      margin-bottom: 20px;
       text-align: center;
-      transform-origin: top center;
-      animation: swing 3s ease-in-out infinite alternate;
-    }
-    .hanging-sign::before {
-      content: '';
-      position: absolute;
-      top: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 40px;
-      height: 10px;
-      border-left: 2px solid #d4a373;
-      border-right: 2px solid #d4a373;
-    }
-    @keyframes swing {
-      0% { transform: rotate(2deg); }
-      100% { transform: rotate(-2deg); }
     }
 
-    /* 掛牌下方的三條線按鈕 (漢堡選單按鈕) */
+    /* 側邊欄與選單開關按鈕 */
     .menu-toggle-btn {
       position: fixed;
-      top: 95px;
-      left: 15px;
-      z-index: 999;
-      width: 42px;
-      height: 42px;
-      background: rgba(139, 90, 43, 0.9);
-      color: #fff8dc;
-      border: 2px solid #5c3a17;
-      border-radius: 10px;
+      top: 20px;
+      left: 20px;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
+      font-size: 18px;
+      color: #2c3e50;
       cursor: pointer;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-      backdrop-filter: blur(4px);
-      transition: transform 0.2s, background 0.2s;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      backdrop-filter: blur(5px);
+      transition: all 0.3s ease;
     }
     .menu-toggle-btn:hover {
-      transform: scale(1.08);
-      background: #8b5a2b;
-    }
-    .menu-toggle-btn i {
-      font-size: 20px;
+      transform: scale(1.05);
+      background: #ffffff;
     }
 
-    /* 側邊滑出選單 Drawer */
     .side-menu-overlay {
       position: fixed;
       top: 0;
       left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(0, 0, 0, 0.5);
-      backdrop-filter: blur(3px);
-      z-index: 1000;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.4);
       opacity: 0;
       visibility: hidden;
-      transition: opacity 0.3s ease, visibility 0.3s ease;
+      transition: all 0.3s ease;
+      z-index: 1001;
     }
     .side-menu-overlay.open {
       opacity: 1;
@@ -145,18 +117,16 @@
       position: fixed;
       top: 0;
       left: -280px;
-      width: 260px;
-      height: 100vh;
-      background: linear-gradient(135deg, rgba(40, 30, 20, 0.92), rgba(20, 15, 10, 0.95));
-      backdrop-filter: blur(16px);
-      border-right: 1px solid rgba(255, 255, 255, 0.15);
-      z-index: 1001;
-      padding: 30px 20px;
+      width: 280px;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(15px);
+      box-shadow: 4px 0 20px rgba(0,0,0,0.15);
+      z-index: 1002;
+      transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      padding: 25px 20px;
       display: flex;
       flex-direction: column;
-      box-shadow: 5px 0 25px rgba(0,0,0,0.5);
-      transition: left 0.3s ease-in-out;
-      overflow-y: auto;
     }
     .side-drawer.open {
       left: 0;
@@ -166,237 +136,181 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding-bottom: 15px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-      margin-bottom: 15px;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
     }
     .drawer-header h3 {
-      color: #fff8dc;
       font-size: 18px;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      color: #2c3e50;
     }
     .close-drawer-btn {
       background: none;
       border: none;
-      color: #aaa;
-      font-size: 20px;
+      font-size: 22px;
+      color: #7f8c8d;
       cursor: pointer;
-      transition: color 0.2s;
-    }
-    .close-drawer-btn:hover {
-      color: #fff;
     }
 
     .menu-section-title {
       font-size: 12px;
       font-weight: 700;
-      color: #d4a373;
-      letter-spacing: 1px;
+      color: #7f8c8d;
+      margin: 15px 0 5px 0;
       text-transform: uppercase;
-      margin: 10px 0 6px 4px;
     }
-
-    .menu-divider {
-      height: 1px;
-      background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
-      margin: 12px 0;
-    }
-
     .menu-list {
       list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
     }
-    .menu-item a {
+    .menu-item {
+      margin-bottom: 5px;
+    }
+    .menu-link {
       display: flex;
       align-items: center;
-      gap: 12px;
-      padding: 10px 14px;
-      color: #e2e8f0;
+      gap: 10px;
+      padding: 10px 12px;
+      color: #2c3e50;
       text-decoration: none;
-      font-size: 14px;
-      font-weight: 500;
-      border-radius: 10px;
-      background: rgba(255, 255, 255, 0.05);
-      transition: background 0.2s, color 0.2s, transform 0.2s;
+      font-weight: 600;
+      border-radius: 8px;
+      transition: background 0.2s;
     }
-    .menu-item a:hover {
-      background: rgba(255, 255, 255, 0.18);
-      color: #ffffff;
-      transform: translateX(4px);
+    .menu-link:hover {
+      background: rgba(41, 128, 185, 0.1);
+      color: #2980b9;
     }
-    .menu-item i {
-      width: 20px;
-      text-align: center;
-      color: #d4a373;
+    .menu-divider {
+      height: 1px;
+      background: rgba(0,0,0,0.08);
+      margin: 10px 0;
     }
 
-    /* 右上角固定浮動社群按鈕區域 */
+    /* 社群按鈕 */
     .social-buttons {
       position: fixed;
       top: 20px;
       right: 20px;
-      z-index: 999;
       display: flex;
-      flex-direction: column;
-      gap: 12px;
+      gap: 10px;
+      z-index: 1000;
     }
-
     .social-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 50px;
-      height: 50px;
       color: white;
-      border-radius: 50%;
       text-decoration: none;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      font-size: 18px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      transition: transform 0.2s ease;
     }
     .social-btn:hover {
-      transform: scale(1.12);
-      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.45);
+      transform: scale(1.1);
     }
-    .social-btn i {
-      font-size: 26px;
-    }
-
     .ig-btn {
-      background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
     }
-
     .discord-btn {
       background: #5865F2;
     }
 
-    /* 液態玻璃核心樣式 */
-    .glass-card {
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.15));
-      backdrop-filter: blur(16px) saturate(180%);
-      -webkit-backdrop-filter: blur(16px) saturate(180%);
-      border-radius: 28px;
-      border: 1px solid rgba(255, 255, 255, 0.6);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25),
-                  inset 0 1px 2px rgba(255, 255, 255, 0.8),
-                  inset 0 -2px 4px rgba(0, 0, 0, 0.1);
-      width: 100%;
-      max-width: 480px;
-      padding: 30px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .glass-card::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0) 60%);
+    /* 右下角署名 */
+    .site-watermark {
+      position: fixed;
+      bottom: 12px;
+      right: 15px;
+      background: rgba(255, 255, 255, 0.65);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 600;
+      color: #4a5568;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      z-index: 999;
       pointer-events: none;
-      transform: rotate(30deg);
     }
 
-    .card {
-      margin-top: 60px;
+    /* 玻璃擬態通用卡片 */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.65);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      border-radius: 24px;
+      padding: 24px;
+      width: 100%;
+      max-width: 500px;
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.08);
       margin-bottom: 25px;
     }
 
-    .info-card {
-      margin-bottom: 40px;
+    .card h2 {
+      font-size: 22px;
+      color: #1a252f;
+      margin-bottom: 4px;
+      text-align: center;
+    }
+    .card p {
+      text-align: center;
+      font-size: 13px;
+      color: #596575;
+      margin-bottom: 18px;
     }
 
-    h2 {
-      color: #1a252f;
-      margin-bottom: 10px;
-      font-size: 24px;
-      text-shadow: 0 1px 2px rgba(255, 255, 255, 0.6);
-    }
-    p {
-      color: #2c3e50;
-      font-size: 14px;
-      margin-bottom: 20px;
-      line-height: 1.5;
-      font-weight: 500;
-    }
+    /* 表單元件 */
     textarea {
       width: 100%;
-      height: 130px;
+      height: 110px;
       padding: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.6);
-      border-radius: 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      background: rgba(255, 255, 255, 0.8);
       resize: none;
-      font-size: 16px;
       outline: none;
-      background: rgba(255, 255, 255, 0.5);
-      backdrop-filter: blur(8px);
-      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
-      transition: border-color 0.3s, background 0.3s;
+      font-size: 14px;
+      margin-bottom: 12px;
+      transition: border 0.3s;
     }
     textarea:focus {
-      border-color: #3498db;
-      background: rgba(255, 255, 255, 0.75);
+      border-color: #2980b9;
     }
-
     .captcha-container {
       display: flex;
       align-items: center;
-      justify-content: flex-start;
-      gap: 10px;
-      margin-top: 15px;
-      padding: 12px 16px;
-      background: rgba(255, 255, 255, 0.4);
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.6);
-      backdrop-filter: blur(4px);
-    }
-    .captcha-container input[type="checkbox"] {
-      width: 18px;
-      height: 18px;
-      cursor: pointer;
-      accent-color: #3498db;
-    }
-    .captcha-container label {
+      gap: 8px;
+      margin-bottom: 15px;
       font-size: 14px;
-      color: #2c3e50;
-      font-weight: 600;
-      cursor: pointer;
-      user-select: none;
     }
-
     button[type="submit"] {
-      margin-top: 15px;
       width: 100%;
       padding: 12px;
-      background: linear-gradient(135deg, #3498db, #2980b9);
-      color: white;
       border: none;
-      border-radius: 25px;
-      font-size: 16px;
+      border-radius: 12px;
+      background: #2980b9;
+      color: white;
       font-weight: bold;
+      font-size: 15px;
       cursor: pointer;
-      box-shadow: 0 6px 18px rgba(52, 152, 219, 0.4);
-      transition: background 0.3s, transform 0.2s, opacity 0.3s;
+      transition: background 0.3s ease;
     }
     button[type="submit"]:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 22px rgba(52, 152, 219, 0.5);
+      background: #3498db;
     }
 
+    /* 向下滑動提示 */
     .scroll-down-hint {
-      color: rgba(255, 255, 255, 0.9);
-      font-size: 14px;
-      margin-bottom: 30px;
+      margin: 10px 0 30px;
+      font-size: 13px;
+      color: #2c3e50;
+      font-weight: bold;
       animation: bounce 2s infinite;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
     }
     @keyframes bounce {
       0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
@@ -405,97 +319,87 @@
     }
 
     .info-card h3 {
-      color: #1a252f;
-      font-size: 20px;
-      margin-bottom: 15px;
-      text-align: center;
+      font-size: 17px;
+      margin-bottom: 12px;
       display: flex;
       align-items: center;
-      justify-content: center;
       gap: 8px;
-      text-shadow: 0 1px 2px rgba(255, 255, 255, 0.6);
     }
 
+    /* 新聞清單樣式 */
     .news-list {
       list-style: none;
-      text-align: left;
     }
     .news-item {
-      padding: 12px 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 10px 0;
+      border-bottom: 1px dashed rgba(0,0,0,0.1);
     }
     .news-item:last-child {
       border-bottom: none;
     }
     .news-item a {
+      color: #2c3e50;
       text-decoration: none;
-      color: #1a252f;
+      font-size: 14px;
       font-weight: 600;
-      font-size: 15px;
-      line-height: 1.4;
       display: block;
+      margin-bottom: 4px;
       transition: color 0.2s;
     }
     .news-item a:hover {
       color: #2980b9;
     }
     .news-date {
-      font-size: 12px;
-      color: #4a5568;
-      margin-top: 5px;
+      font-size: 11px;
+      color: #7f8c8d;
     }
 
+    /* 宗教進度條樣式 */
     .religion-item {
-      margin-bottom: 16px;
-      text-align: left;
+      margin-bottom: 12px;
     }
     .religion-header {
       display: flex;
       justify-content: space-between;
-      font-weight: 600;
-      font-size: 14px;
-      color: #2c3e50;
-      margin-bottom: 6px;
+      font-size: 13px;
+      font-weight: bold;
+      margin-bottom: 4px;
     }
     .progress-bar-bg {
-      width: 100%;
-      background-color: rgba(255, 255, 255, 0.35);
-      height: 10px;
-      border-radius: 5px;
+      background: rgba(0,0,0,0.06);
+      height: 8px;
+      border-radius: 4px;
       overflow: hidden;
-      box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
     }
     .progress-bar-fill {
       height: 100%;
-      border-radius: 5px;
-      transition: width 1s ease-in-out;
+      border-radius: 4px;
     }
     .update-time {
       font-size: 11px;
-      color: #4a5568;
+      color: #7f8c8d;
       text-align: right;
       margin-top: 10px;
     }
 
+    /* 氣象卡片網格 */
     .weather-grid {
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      margin-top: 15px;
+      gap: 10px;
     }
     .weather-item {
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      background: rgba(255, 255, 255, 0.3);
-      padding: 12px 18px;
-      border-radius: 16px;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.4);
+      padding: 10px 14px;
+      border-radius: 12px;
       border: 1px solid rgba(255, 255, 255, 0.5);
     }
     .weather-city {
-      font-weight: 700;
-      color: #1a252f;
-      font-size: 15px;
+      font-weight: 600;
+      font-size: 14px;
     }
     .weather-info {
       display: flex;
@@ -688,6 +592,7 @@
 </head>
 <body>
 
+  <!-- 切換式背景圖層 -->
   <div class="bg-layer active" id="bg-1" style="background-image: url('https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=1600&auto=format&fit=crop');"></div>
   <div class="bg-layer" id="bg-2" style="background-image: url('https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?q=80&w=1600&auto=format&fit=crop');"></div>
   <div class="bg-layer" id="bg-3" style="background-image: url('https://images.unsplash.com/photo-1564507592333-c60657eea523?q=80&w=1600&auto=format&fit=crop');"></div>
@@ -695,10 +600,12 @@
 
   <div class="bg-overlay"></div>
 
+  <!-- 告示牌 -->
   <div class="hanging-sign">
     🪧 當你在外面聽到真主保佑時，請大喊：阿們
   </div>
 
+  <!-- 選單按鈕與抽屜選單 -->
   <button class="menu-toggle-btn" id="open-menu-btn" title="開啟選單">
     <i class="fas fa-bars"></i>
   </button>
@@ -756,6 +663,7 @@
     </ul>
   </div>
 
+  <!-- 社群按鈕 -->
   <div class="social-buttons">
     <a href="https://ig.me/j/uk7x2r1jqn8SXzO1/" target="_blank" rel="noopener noreferrer" class="social-btn ig-btn" title="加入 IG 群組">
       <i class="fab fa-instagram"></i>
@@ -765,6 +673,8 @@
     </a>
   </div>
 
+  <!-- 右下角署名 -->
+  <div class="site-watermark">Made by baron._1004 @2026</div>
   <!-- 第一區塊：匿名留言板 -->
   <div class="glass-card card section-target" id="section-submission" data-bg="bg-1">
     <h2>🌍 國際真主匿名</h2>
@@ -833,12 +743,14 @@
       <p style="text-align: center; color: #4a5568;">⚡ 正在取得最新科技快報資訊...</p>
     </div>
   </div>
+  <!-- Formspree 腳本 -->
   <script>
     window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
     formspree('initForm', { formElement: '#anonymous-form', formId: 'xbgjqgvr' });
   </script>
   <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 
+  <!-- 主邏輯腳本 -->
   <script>
     const openMenuBtn = document.getElementById('open-menu-btn');
     const closeMenuBtn = document.getElementById('close-menu-btn');
@@ -1291,6 +1203,7 @@
       }
     }
 
+    // 初始化頁面數據
     fetchWorldNews();
     fetchReligionData();
     fetchWeatherData();
