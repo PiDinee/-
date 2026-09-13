@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>國際真主匿名 & 3C 行情即時網</title>
+  <title>國際真主匿名</title>
   
   <!-- FontAwesome 圖示庫 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -22,7 +22,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
-      padding: 60px 20px 40px;
+      padding: 80px 20px 40px;
       color: #2d3748;
       position: relative;
     }
@@ -55,19 +55,54 @@
       z-index: -1;
     }
 
-    /* 懸掛告示牌 */
+    /* 左上方懸掛吊牌樣式 */
+    .hanging-sign-container {
+      position: fixed;
+      top: 0;
+      left: 80px;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      pointer-events: none;
+    }
+
+    /* 懸掛吊繩 */
+    .hanging-ropes {
+      display: flex;
+      justify-content: space-between;
+      width: 70%;
+      height: 18px;
+    }
+    .hanging-rope {
+      width: 2px;
+      height: 100%;
+      background: rgba(100, 110, 120, 0.5);
+      box-shadow: 1px 0 2px rgba(0,0,0,0.1);
+    }
+
+    /* 吊牌本體 */
     .hanging-sign {
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.8);
-      padding: 10px 20px;
-      border-radius: 30px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      pointer-events: auto;
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      padding: 8px 16px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
       font-weight: 600;
-      font-size: 14px;
+      font-size: 13px;
       color: #2c3e50;
-      margin-bottom: 20px;
       text-align: center;
+      transform-origin: top center;
+      animation: swing 3.5s ease-in-out infinite alternate;
+    }
+
+    /* 微幅搖擺動畫 */
+    @keyframes swing {
+      0% { transform: rotate(-3deg); }
+      100% { transform: rotate(3deg); }
     }
 
     /* 側邊欄與選單開關按鈕 */
@@ -600,9 +635,15 @@
 
   <div class="bg-overlay"></div>
 
-  <!-- 告示牌 -->
-  <div class="hanging-sign">
-    🪧 當你在外面聽到真主保佑時，請大聲回答：阿們🤓
+  <!-- 左上方懸掛吊牌 -->
+  <div class="hanging-sign-container">
+    <div class="hanging-ropes">
+      <div class="hanging-rope"></div>
+      <div class="hanging-rope"></div>
+    </div>
+    <div class="hanging-sign">
+      🪧 當你在外面聽到真主保佑時，請大聲回答：阿們🤓
+    </div>
   </div>
 
   <!-- 選單按鈕與抽屜選單 -->
@@ -675,6 +716,7 @@
 
   <!-- 右下角署名 -->
   <div class="site-watermark">Made by baron._1004 @2026</div>
+
   <!-- 第一區塊：匿名留言板 -->
   <div class="glass-card card section-target" id="section-submission" data-bg="bg-1">
     <h2>🌍 國際真主匿名</h2>
@@ -1111,7 +1153,7 @@
               <div class="series-item">
                 <div class="series-header">
                   <span>${seriesName}</span>
-                  <i class="fas fa-chevron-down"></i>
+                  <i class="fas fa-chevron-down" style="font-size:12px;"></i>
                 </div>
                 <div class="model-list">
                   ${modelHtml}
@@ -1152,7 +1194,7 @@
         });
       });
 
-      const now = new Date().toLocaleDateString('zh-TW', { month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+      const now = new Date().toLocaleDateString('zh-TW', { year: 'numeric', month: 'long', day: 'numeric' });
       updateTime.innerText = `傑昇門市價格更新時間：${now} (同步空機破盤價)`;
     }
 
