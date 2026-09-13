@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>國際真主版</title>
+  <title>匿名提問箱與國際資訊</title>
   <!-- 引入 FontAwesome 圖示庫 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
@@ -535,8 +535,8 @@
 
   <!-- 第一區塊：匿名留言板 (液態玻璃風格) -->
   <div class="glass-card card section-target" id="section-submission" data-bg="bg-1">
-    <h2>🌍 國際真主匿名</h2>
-    <p>匿名投稿</p>
+    <h2>🌍 匿名跟我說說話</h2>
+    <p>有什麼想對我說的？在這裡留言，我會收到通知，但絕對不會知道你是誰！</p>
     
     <div data-fs-success>🎉 留言已順利寄出！感謝你的分享！</div>
 
@@ -716,4 +716,13 @@
         timeContainer.innerText = `數據更新時間：${now} (同步權威人口數據)`;
 
       } catch (e) {
-        container.innerHTML = '<p style="tex
+        container.innerHTML = '<p style="texalign:center; color:red;">宗教數據載入失敗。</p>';
+      }
+    }
+
+    fetchWorldNews();
+    fetchReligionData();
+  </script>
+
+</body>
+</html>    
