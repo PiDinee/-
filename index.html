@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>匿名提問箱與國際資訊</title>
+  <title>國際真主版</title>
   <!-- 引入 FontAwesome 圖示庫 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
@@ -258,7 +258,7 @@
       background: #5865F2;
     }
 
-    /* 液態玻璃核心樣式 (Liquid Glass Style) */
+    /* 液態玻璃核心樣式 */
     .glass-card {
       background: linear-gradient(135deg, rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.15));
       backdrop-filter: blur(16px) saturate(180%);
@@ -277,7 +277,6 @@
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    /* 液態玻璃高光流光效果 */
     .glass-card::before {
       content: '';
       position: absolute;
@@ -331,7 +330,6 @@
       background: rgba(255, 255, 255, 0.75);
     }
 
-    /* 機器人驗證核取方塊樣式 */
     .captcha-container {
       display: flex;
       align-items: center;
@@ -377,7 +375,6 @@
       box-shadow: 0 8px 22px rgba(52, 152, 219, 0.5);
     }
 
-    /* 往下滑提示指標 */
     .scroll-down-hint {
       color: rgba(255, 255, 255, 0.9);
       font-size: 14px;
@@ -403,7 +400,6 @@
       text-shadow: 0 1px 2px rgba(255, 255, 255, 0.6);
     }
 
-    /* 新聞列表 */
     .news-list {
       list-style: none;
       text-align: left;
@@ -433,7 +429,6 @@
       margin-top: 5px;
     }
 
-    /* 宗教統計區塊樣式 */
     .religion-item {
       margin-bottom: 16px;
       text-align: left;
@@ -466,7 +461,41 @@
       margin-top: 10px;
     }
 
-    /* Formspree 狀態訊息樣式 */
+    /* 天氣列表風格 */
+    .weather-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 15px;
+    }
+    .weather-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(255, 255, 255, 0.3);
+      padding: 12px 18px;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+    }
+    .weather-city {
+      font-weight: 700;
+      color: #1a252f;
+      font-size: 15px;
+    }
+    .weather-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .weather-temp {
+      font-size: 18px;
+      font-weight: bold;
+      color: #2980b9;
+    }
+    .weather-icon {
+      font-size: 20px;
+    }
+
     [data-fs-success] {
       display: none;
       background: rgba(232, 248, 245, 0.85);
@@ -481,23 +510,20 @@
 </head>
 <body>
 
-  <!-- 動態景點背景圖層 -->
   <div class="bg-layer active" id="bg-1" style="background-image: url('https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=1600&auto=format&fit=crop');"></div>
   <div class="bg-layer" id="bg-2" style="background-image: url('https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?q=80&w=1600&auto=format&fit=crop');"></div>
   <div class="bg-layer" id="bg-3" style="background-image: url('https://images.unsplash.com/photo-1564507592333-c60657eea523?q=80&w=1600&auto=format&fit=crop');"></div>
+  <div class="bg-layer" id="bg-4" style="background-image: url('https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?q=80&w=1600&auto=format&fit=crop');"></div>
   <div class="bg-overlay"></div>
 
-  <!-- 左上角懸掛告示牌 -->
   <div class="hanging-sign">
     🪧 當你在外面聽到真主保佑時，請大喊：阿們
   </div>
 
-  <!-- 掛牌下方的三條線按鈕 -->
   <button class="menu-toggle-btn" id="open-menu-btn" title="開啟選單">
     <i class="fas fa-bars"></i>
   </button>
 
-  <!-- 側邊選單 (Drawer) 遮罩與內容 -->
   <div class="side-menu-overlay" id="menu-overlay"></div>
   <div class="side-drawer" id="side-drawer">
     <div class="drawer-header">
@@ -520,10 +546,14 @@
           <i class="fas fa-chart-pie"></i> 宗教統計
         </a>
       </li>
+      <li class="menu-item">
+        <a href="#section-weather" class="menu-link">
+          <i class="fas fa-cloud-sun"></i> 城市氣象
+        </a>
+      </li>
     </ul>
   </div>
 
-  <!-- 右上角社群按鈕 -->
   <div class="social-buttons">
     <a href="https://ig.me/j/uk7x2r1jqn8SXzO1/" target="_blank" rel="noopener noreferrer" class="social-btn ig-btn" title="加入 IG 群組">
       <i class="fab fa-instagram"></i>
@@ -532,11 +562,10 @@
       <i class="fab fa-discord"></i>
     </a>
   </div>
-
-  <!-- 第一區塊：匿名留言板 (液態玻璃風格) -->
+  <!-- 第一區塊：匿名留言板 -->
   <div class="glass-card card section-target" id="section-submission" data-bg="bg-1">
-    <h2>🌍 匿名跟我說說話</h2>
-    <p>有什麼想對我說的？在這裡留言，我會收到通知，但絕對不會知道你是誰！</p>
+    <h2>🌍 國際真主匿名</h2>
+    <p>匿名投稿</p>
     
     <div data-fs-success>🎉 留言已順利寄出！感謝你的分享！</div>
 
@@ -545,7 +574,6 @@
         <textarea name="message" placeholder="寫下你想說的話..." required data-fs-field></textarea>
       </div>
 
-      <!-- 我不是機器人驗證區塊 -->
       <div class="captcha-container">
         <input type="checkbox" id="not-robot" required>
         <label for="not-robot">我不是機器人</label>
@@ -555,12 +583,11 @@
     </form>
   </div>
 
-  <!-- 向下滑動提示 -->
   <div class="scroll-down-hint">
     <i class="fas fa-chevron-down"></i> 往下滑看國際資訊
   </div>
 
-  <!-- 第二區塊：國際即時新聞區 (液態玻璃風格) -->
+  <!-- 第二區塊：國際新聞區 -->
   <div class="glass-card info-card section-target" id="section-news" data-bg="bg-2">
     <h3><i class="fas fa-globe-americas" style="color: #2980b9;"></i> 國際即時頭條</h3>
     <ul class="news-list" id="news-container">
@@ -568,7 +595,7 @@
     </ul>
   </div>
 
-  <!-- 第三區塊：全球前 5 大宗教信徒百分比 (液態玻璃風格) -->
+  <!-- 第三區塊：宗教統計區 -->
   <div class="glass-card info-card section-target" id="section-religion" data-bg="bg-3">
     <h3><i class="fas fa-chart-pie" style="color: #e67e22;"></i> 全球前 5 大宗教信徒比例</h3>
     <div id="religion-container">
@@ -577,16 +604,21 @@
     <div class="update-time" id="religion-time"></div>
   </div>
 
-  <!-- Formspree 腳本 -->
+  <!-- 新增：第四區塊：世界重要城市氣象區 -->
+  <div class="glass-card info-card section-target" id="section-weather" data-bg="bg-4">
+    <h3><i class="fas fa-cloud-sun" style="color: #f39c12;"></i> 世界重要城市氣象</h3>
+    <div class="weather-grid" id="weather-container">
+      <p style="text-align: center; color: #4a5568;">🌤️ 正在連線全球氣象衛星取得最新數據...</p>
+    </div>
+  </div>
+
   <script>
     window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
     formspree('initForm', { formElement: '#anonymous-form', formId: 'xbgjqgvr' });
   </script>
   <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 
-  <!-- JS 邏輯腳本 -->
   <script>
-    // 1. 漢堡選單開關邏輯
     const openMenuBtn = document.getElementById('open-menu-btn');
     const closeMenuBtn = document.getElementById('close-menu-btn');
     const sideDrawer = document.getElementById('side-drawer');
@@ -607,12 +639,10 @@
     closeMenuBtn.addEventListener('click', closeMenu);
     menuOverlay.addEventListener('click', closeMenu);
 
-    // 點擊選單連結後自動關閉選單
     menuLinks.forEach(link => {
       link.addEventListener('click', closeMenu);
     });
 
-    // 2. 動態背景切換
     const sections = document.querySelectorAll('.section-target');
     const bgLayers = document.querySelectorAll('.bg-layer');
 
@@ -639,7 +669,6 @@
 
     sections.forEach(section => observer.observe(section));
 
-    // 3. 驗證勾選框
     const form = document.getElementById('anonymous-form');
     const robotCheckbox = document.getElementById('not-robot');
 
@@ -650,7 +679,6 @@
       }
     });
 
-    // 4. 抓取國際新聞
     async function fetchWorldNews() {
       const container = document.getElementById('news-container');
       try {
@@ -682,7 +710,6 @@
       }
     }
 
-    // 5. 抓取宗教數據
     async function fetchReligionData() {
       const container = document.getElementById('religion-container');
       const timeContainer = document.getElementById('religion-time');
@@ -716,13 +743,56 @@
         timeContainer.innerText = `數據更新時間：${now} (同步權威人口數據)`;
 
       } catch (e) {
-        container.innerHTML = '<p style="texalign:center; color:red;">宗教數據載入失敗。</p>';
+        container.innerHTML = '<p style="text-align:center; color:red;">宗教數據載入失敗。</p>';
+      }
+    }
+
+    // 即時連線抓取 Open-Meteo 免費氣象 API 數據
+    async function fetchWeatherData() {
+      const container = document.getElementById('weather-container');
+      const cities = [
+        { name: '🇯🇵 東京 (Tokyo)', lat: 35.6762, lon: 139.6503 },
+        { name: '🇺🇸 紐約 (New York)', lat: 40.7128, lon: -74.0060 },
+        { name: '🇬🇧 倫敦 (London)', lat: 51.5074, lon: -0.1278 },
+        { name: '🇫🇷 巴黎 (Paris)', lat: 48.8566, lon: 2.3522 },
+        { name: '🇦🇺 雪梨 (Sydney)', lat: -33.8688, lon: 151.2093 }
+      ];
+
+      try {
+        container.innerHTML = '';
+        for (const city of cities) {
+          const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${city.lat}&longitude=${city.lon}&current_weather=true`);
+          const data = await res.json();
+          const temp = Math.round(data.current_weather.temperature);
+          const weatherCode = data.current_weather.weathercode;
+          
+          let icon = '☀️';
+          if (weatherCode >= 1 && weatherCode <= 3) icon = '⛅';
+          else if (weatherCode >= 45 && weatherCode <= 48) icon = '🌫️';
+          else if (weatherCode >= 51 && weatherCode <= 67) icon = '🌧️';
+          else if (weatherCode >= 71) icon = '❄️';
+          else if (weatherCode >= 95) icon = '⛈️';
+
+          const item = document.createElement('div');
+          item.className = 'weather-item';
+          item.innerHTML = `
+            <span class="weather-city">${city.name}</span>
+            <div class="weather-info">
+              <span class="weather-icon">${icon}</span>
+              <span class="weather-temp">${temp}°C</span>
+            </div>
+          `;
+          container.appendChild(item);
+        }
+      } catch (e) {
+        container.innerHTML = '<p style="text-align:center; color:red;">氣象數據載入失敗。</p>';
       }
     }
 
     fetchWorldNews();
     fetchReligionData();
+    fetchWeatherData();
   </script>
 
 </body>
-</html>    
+</html>
